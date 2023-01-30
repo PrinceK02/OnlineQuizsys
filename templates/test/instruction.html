@@ -1,0 +1,105 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Instructions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/Instructions.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'assets/img/logo.png' %}">
+</head>
+
+<body class="fixed-sn animated fadeIn">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark elegant-color">
+            <a href="/" class="navbar-brand" title="JMIT website"><img src="{% static 'assets/img/logo.png' %}">
+                <p id="head">JMIT KNOWLEDGE</p>
+            </a>
+            {% if user.is_authenticated %}
+                <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="clearfix d-none d-sm-inline-block">Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                    <li class="nav-item">
+                        <a href="/login" class="nav-link">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="clearfix d-none d-sm-inline-block">Login</span>
+                        </a>
+                    </li>
+                </ul>
+            {% endif %}
+    </header>
+
+    
+    {% if user.is_authenticated %}
+        <main class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2"></div>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                    <div class="jumbotron">
+                        <h1 class="h1-responsive">{{quiz.title}}</h1>
+                        <h3 class="h3-responsive">No. of Questions: <strong style="font-weight: revert;">{{totalQ}}</strong></h3>
+                        <h4 class="h4-responsive">Information</h4>
+                        <ul>
+                            <li>No negative marking.</li>
+                            <li>Duration of test is <strong style="font-weight: revert;">{{quiztime}}</strong>.</li>
+                            <li>Maximum marks can be obtained is <strong style="font-weight: revert;">{{maxmarks}}</strong>.</li>
+                        </ul>
+                        <h4 class="h4-responsive">Instruction</h4>
+                        <ul>
+                            <li>Do not refresh the page during test.</li>
+                            <li>If you would not end test then it gets submitted automatically after completion of time.</li>
+                            <li>After submission of test you would be redirected to your page.</li>
+                        </ul>
+                        <a href="{% url 'dashboard' quiz.pk %}"><button type="button" class="btn start">Start the test</button></a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    {% else %}
+        <main class="container animated fadeIn">
+            <div class="row">
+                <div class="col-lg-2 col-md-2"></div>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                    <div class="jumbotron">
+                        <h1 class="h1-responsive" align="center">Sorry for inconvenience</h1>
+                        <hr>
+                        <p align="center">
+                            You are not Logged in. Please Login <a href="/login">Click here</a>
+                        </p><br>
+                    </div>
+                </div>
+            </div>
+        </main>
+    {% endif %}
+
+
+    <footer class="page-footer elegant-color center-on-small-only">
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © 2021 Copyright:  <a href="https://www.jmit.ac.in">JMIT Innovations</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/mdb.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/dashboard1.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'assets/img/logo.png' %}">
+
+</head>
+
+<body class="fixed-sn animated fadeIn" style="background-color: currentcolor;">
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark elegant-color">
+      <div class="navbar-brand" title="JMIT Website"><img src="{% static 'assets/img/logo.png' %}">
+        <p id="head">JMIT KNOWLEDGE</p>
+      </div>
+      {% if user.is_authenticated %}
+      <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item">
+          <a href="/logout" class="nav-link">
+            <i class="fa fa-sign-out"></i>
+            <span class="clearfix d-none d-sm-inline-block">Sign Out</span>
+          </a>
+        </li>
+      </ul>
+      {% else %}
+      <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item">
+          <a href="/login" class="nav-link">
+            <i class="fa fa-sign-out"></i>
+            <span class="clearfix d-none d-sm-inline-block">Login</span>
+          </a>
+        </li>
+      </ul>
+      {% endif %}
+    </nav>
+  </header>
+
+
+
+  {% if user.is_authenticated %}
+    <main class="container-fluid">
+      <div class="row parent_row">
+        <div class="col-lg-3 col-md-3 col-12">
+          <div class="panel">
+            <div class="panel panel-body" id="border">
+              <div class="row mr-0">
+                {% for question in questionset %}
+                <div class="col-lg-4 col-4 col-md-6">
+                  <button style="color:white;" type="button" id="b{{forloop.counter}}" class="Button" onclick="showq('{{forloop.counter}}')">{{forloop.counter}}</button>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-9 col-md-9 col-12" style="color: #616161;">
+
+          <div class="ml-auto"style="font-weight: bold;" id="quiz-time-left"></div>
+
+          <script type="text/javascript">
+            var total_sec = 60 * {{ time }};    // 60 min by default.
+            var c_min = parseInt(total_sec / 60);
+            var c_sec = parseInt(total_sec % 60);
+            function Checktime() {
+              document.getElementById('quiz-time-left').innerHTML = 'Time Left - ' + c_min + ' min ' + c_sec + ' sec';
+              if (total_sec <= 0) {
+                setTimeout('document.quiz.submit()', 1);
+              }
+              else {
+                total_sec = total_sec - 1;
+                c_min = parseInt(total_sec / 60);
+                c_sec = parseInt(total_sec % 60);
+                setTimeout("Checktime()", 1000);    // recursive call.
+              }
+            }
+            setTimeout("Checktime()", 1000);    // first call.
+          </script>
+
+          <h6 style="float: right;display:flex;">Please Do not Refresh any Page during Test</h6>
+
+          <form method="POST" name="quiz">
+            {% csrf_token %}
+
+            {% for question in questionset %}
+            <div id="{{forloop.counter}}">
+              <div class="ques">
+                
+                  <h3>{{question.title}}</h3>
+                  <hr>
+                  <p>{{ question.desc | linebreaks}}</p>
+                  <ul class="Oplist">
+                    <li class="option">
+                      <input type="radio" id="option1{{question.pk}}" name="{{question.pk}}" value="1">
+                      <label for="option1{{question.pk}}">{{question.option_1}}</label>
+
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+
+                    <li class="option">
+                      <input type="radio" id="option2{{question.pk}}" name="{{question.pk}}" value="2">
+                      <label for="option2{{question.pk}}">{{question.option_2}}</label>
+
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+
+                    <li class="option">
+                      <input type="radio" id="option3{{question.pk}}" name="{{question.pk}}" value="3">
+                      <label for="option3{{question.pk}}">{{question.option_3}}</label>
+
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+
+                    <li class="option">
+                      <input type="radio" id="option4{{question.pk}}" name="{{question.pk}}" value="4">
+                      <label for="option4{{question.pk}}">{{question.option_4}}</label>
+
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+                  </ul>
+                  <a onclick="shownext({{forloop.counter}})" class="next" id="next{{forloop.counter}}">Next<i style="margin-left: 5px;"
+                      class="glyphicon glyphicon-chevron-right"></i></a>
+                
+              </div>
+            </div>
+            {% endfor %}
+            <a><button id="End" type="submit" value="End" class="btn btn-danger end_test mr-auto">END</button></a>
+
+
+            <script type="text/javascript">
+              function shownext(id){
+                var button="b",next="next";
+                for(var i=1;i<={{totalQ}};i++)
+                {
+                  if(id+1!=i){
+                    document.getElementById(i).style.display="none";
+                  }
+                  else{
+                    document.getElementById(i).style.display="block";
+                    document.getElementById('End').style.position="absolute";
+                    document.getElementById('End').style.right="50px";
+                  }
+                }
+                if(id+1=={{totalQ}}){
+                  document.getElementById(next.concat(id+1)).style.display="none";
+                  document.getElementById('End').style.position="relative";
+                  document.getElementById('End').style.right="0px";
+                }
+                document.getElementById(button.concat(id)).style.border="1.5px solid #FF1744";
+                document.getElementById(button.concat(id+1)).style.border="1.5px solid #00bfff";
+              }
+              function showq(id){
+                var next="next";
+                for(var i=1;i<={{totalQ}};i++)
+                {
+                  if(id!=i){
+                    document.getElementById(i).style.display="none";
+                  }
+                  else{
+                    document.getElementById(i).style.display="block";
+                    document.getElementById('End').style.position="absolute";
+                    document.getElementById('End').style.right="50px";
+                  }
+                }
+                if(id=={{totalQ}}){
+                  document.getElementById(next.concat(id)).style.display="none";
+                  document.getElementById('End').style.position="relative";
+                  document.getElementById('End').style.right="0px";
+                }
+              }
+              window.onload=function(){showq(1);};
+            </script>
+
+
+          </form>
+        </div>
+      </div>
+      </div>
+
+    </main>
+
+
+  {% else %}
+    <main class="container animated fadeIn">
+      <div class="row">
+        <div class="col-lg-2 col-md-2"></div>
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+          <div class="jumbotron">
+            <h1 class="h1-responsive" align="center">JMIT QUIZ</h1>
+            <hr>
+            <p align="center">
+              You are not Logged in. Please Login <a href="/login">Click here</a>
+            </p><br>
+          </div>
+        </div>
+      </div>
+    </main>
+  {% endif %}
+  
+
+  <script type="text/javascript" src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'assets/js/popper.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'assets/js/mdb.min.js' %}"></script>
+</body>
+<footer class="page-footer elegant-color center-on-small-only"style="bottom: 0px;position: fixed;width: -webkit-fill-available;">
+  <div class="footer-copyright">
+    <div class="container-fluid">
+      © 2021 Copyright:
+      <a href="#">JMIT Innovations</a>
+
+    </div>
+  </div>
+</footer>
+</html>

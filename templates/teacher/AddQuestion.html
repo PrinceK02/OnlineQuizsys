@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Question</title>
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+</head>
+<body style="
+color: white;
+background-color: #212529;
+">
+<br>
+  <div class="container" id="dione">
+  <form method='POST'>
+    {% csrf_token %}
+    <div class="row mb-3">
+      <label for="ques_id" class="col-sm-2 col-form-label">Ques id:</label>
+      <div class="col-sm-10">
+        <input style="color:white" name="ques_id" type="number" class="form-control" id="inputid">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="ques_title" class="col-sm-2 col-form-label">Question Title:</label>
+      <div class="col-sm-10">
+        <input style="color:white" name="ques_title" type="text" class="form-control" id="inputTitle">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="ques_desc" class="col-sm-2 col-form-label">Desc:</label>
+      <div class="col-sm-10 form-outline">
+        <textarea name="ques_desc" class="form-control" id="textareaDesc" rows="5"style="height: fit-content;color:white;"></textarea>
+      </div>
+    </div>
+    <div class="row mb-3">
+        <label for="option1" class="col-sm-2 col-form-label">Option 1:</label>
+        <div class="col-sm-10">
+          <input style="color:white" name="option1" type="text" class="form-control" id="option1">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="option2" class="col-sm-2 col-form-label">Option 2:</label>
+        <div class="col-sm-10">
+          <input style="color:white" name="option2" type="text" class="form-control" id="option2">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="option3" class="col-sm-2 col-form-label">Option 3:</label>
+        <div class="col-sm-10">
+          <input style="color:white" name="option3" type="text" class="form-control" id="option3">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="option4" class="col-sm-2 col-form-label">Option 4:</label>
+        <div class="col-sm-10">
+          <input style="color:white" name="option4" type="text" class="form-control" id="option4">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="correct_option" class="col-sm-2 col-form-label">Correct Option:</label>
+        <div class="col-sm-10">
+          <input style="color:white" min='1' max='4' name="correct_option" type="number" class="form-control" id="correct_option">
+        </div>
+      </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+</body>
+</html>

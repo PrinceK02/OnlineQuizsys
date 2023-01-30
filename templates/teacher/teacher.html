@@ -1,0 +1,176 @@
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Teacher</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'assets/img/logo.png' %}">
+  <link href="{% static 'assets/css/dashboard1.css' %}" rel="stylesheet">
+</head>
+
+<body class="fixed-sn animated fadeIn" style="
+background-color: #2E2E2E;">
+
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark elegant-color">
+        <div class="navbar-brand" title="JMIT Website"><img src="{% static 'assets/img/logo.png' %}">
+        <p id="head">JMIT KNOWLEDGE</p>
+        </div>
+        {% if user.is_authenticated %}
+        <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item">
+            <a href="/logout" class="nav-link">
+            <i class="fa fa-sign-out"></i>
+            <span class="clearfix d-none d-sm-inline-block">Sign Out</span>
+            </a>
+        </li>
+        </ul>
+        {% else %}
+        <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item">
+            <a href="/login" class="nav-link">
+            <i class="fa fa-sign-out"></i>
+            <span class="clearfix d-none d-sm-inline-block">Login</span>
+            </a>
+        </li>
+        </ul>
+        {% endif %}
+    </nav>
+    </header>
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+      <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="True">&times;</span>
+        </button>
+        {{ message }}
+      </div>
+    </div>
+    {% endfor %}
+    <table class="table table-hover table-dark">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="colgroup" colspan="2"><b>Your Details:</b> &nbsp&nbsp&nbsp <button value="Open" onClick="window.open('{% url 'EditTeacher' %}','Add Quiz','top=100,left=550,toolbar=no,status=no,menubar=no,location=center,scrollbars=yes,resizable=yes,height=650,width=400')" type="button" class="btn btn-outline-warning btn-sm">update</button></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><b>Name:</th>
+          <td>{{Teacher.name}}</td>
+        </tr>
+        <tr>
+          <th scope="row"><b>College:</th>
+          <td>{{Teacher.college}}</td>
+        </tr>
+        <tr>
+          <th scope="row"><b>Branch:</th>
+          <td>{{Teacher.get_branch_display}}</td>
+        </tr>
+        <tr>
+          <th scope="row"><b>Year:</th>
+          <td>{{Teacher.year}}</td>
+        </tr>
+        <tr>
+          <th scope="row"><b>Contact:</th>
+          <td>{{Teacher.contact}}</td>
+        </tr>
+        <tr>
+          <th scope="row"><b>Status:</th>
+          <td>{{Teacher.get_status_display}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <table class="table table-dark table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="colgroup" colspan="6"><b>Active Quizzes: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button value="Open" onClick="AddQuizWindow()" type="button" class="btn btn-outline-primary btn-sm">Add Quiz</button></th>
+        </tr>
+        <tr>
+          <th scope="col"><b>S.no</th>
+          <th scope="col"><b>Quiz Name</th>
+          <th scope="col"><b>No. of Questions</th>
+          <th scope="col"><b>Time Allotted</th>
+          <th scope="col"><b>Update Quiz</th>
+          <th scope="col"><b>Delete Quiz</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for quiz, ques, time in multivalue %}
+          <tr>
+              <th scope="row"><b>{{forloop.counter}}</th>
+              <td>{{quiz.title}}</td>
+              <td>{{ques}}</td>
+              <td>{{time}}</td>
+              <td><button value="Open" onClick="window.open('{% url 'editQuiz' quiz.pk %}','Add Quiz','toolbar=no,top=60,left=250,status=no,menubar=no,location=center,scrollbars=yes,resizable=yes,height=650,width=1000')" type="button" class="btn btn-warning btn-sm btn-rounded">edit</button></td>
+              <td><a href="{% url 'deleteQuiz' quiz.pk %}"><button value="Open" type="button" class="btn btn-danger btn-rounded btn-sm">DELETE</button></a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <hr>
+    <table class="table table-dark table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="colgroup" colspan="7"><b>Quizzes Attempted by Students:</th>
+        </tr>
+        <tr>
+          <th scope="col"><b>S.no</th>
+          <th scope="col"><b>Student Name</th>
+          <th scope="col"><b>Phone No.</th>
+          <th scope="col"><b>Quiz Name</th>
+          <th scope="col"><b>Result</th>
+            <th scope="col"><b>Remove Quiz</th>
+          <th scope="col"><b>Send Mail</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student, lb in multivalue1 %}
+          <tr>
+              <th scope="row"><b>{{forloop.counter}}</th>
+              <td>{{student.name}}</td>
+              <td>{{student.contact}}</td>
+              <td>{{lb.quiz}}</td>
+              <td><button onClick="window.open('{% url 'result' lb.pk %}','Result','top=130,left=550,toolbar=no,status=no,menubar=no,location=center,scrollbars=yes,resizable=yes,height=550,width=400')" value="Open" type="button" class="btn btn-success btn-sm">View</button></td>
+              <td><a href="{% url 'TRemoveQuiz' lb.quiz.pk student.pk lb.pk %}"><button value="Open" type="button" class="btn btn-danger btn-sm">Remove</button></a></td>
+              <td><button onClick="window.open('{% url 'sendmail' lb.pk %}','Mail','top=130,left=550,toolbar=no,status=no,menubar=no,location=center,scrollbars=yes,resizable=yes,height=550,width=400')" value="Open" type="button" class="btn btn-primary btn-sm">compose</button></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+
+    <footer class="page-footer elegant-color center-on-small-only">
+        <div class="footer-copyright">
+          <div class="container-fluid">
+            © 2021 Copyright:
+            <a href="#">JMIT Innovations</a>
+    
+          </div>
+        </div>
+      </footer>
+    
+      <script type="text/javascript" src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'assets/js/popper.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'assets/js/mdb.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'assets/js/dashboard1.js' %}"></script>
+      <script type="text/javascript">  
+        function AddQuizWindow()  
+        {  
+           window.open("{% url 'addQuiz' %}","Add Quiz","top=130,left=550,toolbar=no,status=no,menubar=no,location=center,scrollbars=yes,resizable=yes,height=530,width=450");  
+        }  
+     </script>  
+</body>
+</html>

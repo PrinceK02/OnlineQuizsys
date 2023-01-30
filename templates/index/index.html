@@ -1,0 +1,20 @@
+{% extends "index/header.html" %}
+{% block content %}
+{% load static %}
+    <main class="container animated fadeIn">
+      <div class="row">
+        <div class="col-lg-2 col-md-2"></div>
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+           <div class="jumbotron">
+              <h1 class="h1-responsive" align="center">JMIT MCQ TEST - 2022</h1>
+              <hr>
+              <div class="button-group">
+                <a href="/login"><button type="button" class="btn btn-grey">Log In</button></a>
+                <a href="/signup"><button type="button" class="btn btn-grey">Sign Up</button></a>
+              </div>
+              <p id="instruction" align="center">LogIn/SignUp before starting the test.</p>
+           </div>
+        </div>
+      </div>
+    </main>
+{% endblock %}

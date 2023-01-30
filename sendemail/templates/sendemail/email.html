@@ -1,0 +1,21 @@
+{% extends "index/header.html" %}
+{% block content %}
+{% load static %}
+<br>
+<br>
+<br>
+<form method="post" align = "center">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="form-actions">
+      <button type="submit" class = "btn btn-success">Send</button>
+    </div>
+</form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

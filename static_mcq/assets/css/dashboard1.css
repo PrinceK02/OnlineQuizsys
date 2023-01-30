@@ -1,0 +1,225 @@
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+ 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: grey;
+  border-radius: 30px;
+  outline: 1px solid slategrey;
+}
+body{
+  font-family: 'Quicksand',sans-serif;
+  overflow-x: hidden; 
+}
+.navbar-brand>img {
+    display: block;
+    width: 3rem;
+    margin-top: 0.25rem;
+    margin-left: 0rem;
+}
+p#head {
+    margin-top: -2.5rem;
+    margin-left: 4rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+.row.parent_row{
+   margin-top: 1rem;
+}
+#border {
+    border: 0px solid grey;
+}
+
+button.Button{
+  padding: 1rem 1.4rem;
+  outline: none;
+  margin: 0.5rem 0.5rem;
+  border: 1.5px solid #616161;
+  background-color: transparent;
+  border-radius: 50%;
+  color: #616161;
+}
+button.Button:hover,
+button.Button:focus{
+  border: 1.5px solid #FF1744;
+   color: #FF1744;
+}
+
+.next{
+  background-color: transparent;
+  padding: 1rem 2rem;
+  font-size: 15px;
+  margin-top: 5rem;
+
+  border: 2px solid grey;
+  border-radius: 6px;
+  /* text-decoration: none; */
+  color: grey;
+  outline: none;
+  font-weight: bold;
+}
+
+.next:hover,.next:focus{
+  outline: none;
+  text-decoration: none;
+  color:  #D50000 !important;
+  border: 2px solid  #D50000;
+}
+
+h3{
+   font-weight: bold;
+}
+hr{
+  color: #D50000;
+  background-color: #D50000;
+  width: 100%;
+  height: 3px;
+  margin-right: auto;
+  margin-left: auto;
+  border: none; 
+  border-radius: 10px;  
+}
+
+.panel{
+  background-color: #2E2E2E!important;
+  border-radius: 10px;
+  border: 3px solid #2E2E2E!important;
+}
+
+ul.Oplist{
+  margin-left: -2rem;
+}
+ul.Oplist li.option{
+  color: grey;
+  display: block;
+  position: relative;
+  letter-spacing: 0.5px;
+  float: left;
+  width: 100%;
+  height: 50px;
+}
+ul.Oplist li.option input[type='radio']{
+  color:  #D50000;
+}
+
+ul.Oplist li.option label{
+  position: relative;
+  font-weight: 300;
+  left: 70px;
+  margin: 0px -57px;
+  height: 30px;
+  z-index: 9;
+  cursor: pointer;
+  -webkit-transition: all 0.25s linear;
+}
+
+ul.Oplist li.option:hover label{
+  color:  #D50000;
+}
+
+.Oplist{
+  position: relative;
+}
+button.end_test{
+  position: absolute;
+  right:50px;
+}
+
+footer.page-footer{
+  margin-top: 6rem;
+}
+@media (max-width: 320px){
+ button#oneD{
+   margin: 0.5rem 0.5rem;
+   padding: 1rem 1.5rem;
+ }
+ button#twoD{
+   margin: 0.5rem 0.5rem;
+   padding: 1rem 1.2rem;
+ }
+ .row.parent_row{
+   margin-top: 4rem;
+ }
+ h3{
+   margin-top: 4rem;
+ }
+}
+@media(max-width: 375px) and (min-width: 360px){
+  button#oneD,button#twoD{
+    margin: 0.5rem 0.6rem;
+  }
+  .row.parent_row{
+   margin-top: 4rem;
+ }
+  h3{
+   margin-top: 4rem;
+ }
+}
+@media(max-width: 425px) and (min-width: 410px){
+  button#oneD,button#twoD{
+    margin: 0.5rem 1.1rem;
+  }
+  .row.parent_row{
+   margin-top: 4rem;
+ }
+  h3{
+   margin-top: 4rem;
+ }
+}
+@media(max-width: 768px) and (min-width: 700px){
+  button#oneD{
+    padding: 0.5rem 1.2rem;
+    margin: 0.5rem 0.3rem;
+  }
+  button#twoD{
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0.3rem;
+  }
+  .row.parent_row{
+   margin-top: 4rem;
+ }
+
+}
+@media(max-width: 1024px) and (min-width: 999px){
+  button#oneD{
+    padding: 0.4rem 1rem;
+    margin: 0.5rem 0.3rem;
+  }
+  button#twoD{
+    padding: 0.5rem 0.8rem;
+    margin: 0.5rem 0.3rem;
+  }
+  .row.parent_row{
+   margin-top: 4rem;
+ }
+}
+@media(max-width: 1280px) and (min-width: 1200px){
+  button#oneD{
+    margin: 0.5rem 0.4rem;
+    padding: 1rem 1.5rem;
+  }
+  button#twoD{
+    padding: 1rem 1.2rem;
+    margin: 0.5rem 0.5rem;
+  }
+}
+@media(max-width: 1440px) and (min-width: 1400px){
+  button#oneD,button#twoD{
+    margin: 0.5rem 0.5rem;
+  }
+}
+@media(max-width: 1680px) and (min-width: 1550px){
+  footer.page-footer{
+    margin-top: 6rem;
+  }
+  button#oneD{
+    margin: 0.5rem 1.1rem;
+  }
+  button#twoD{
+    margin: 0.5rem 1.2rem;
+  }
+}

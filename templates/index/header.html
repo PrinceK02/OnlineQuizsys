@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>JMIT-Knowledge</title>
+    {% load static %}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/Homepage.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'assets/img/logo.png' %}">
+    <style type="text/css">
+        #dione {
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body class="fixed-sn animated fadeIn">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark elegant-color">
+            <div class="navbar-brand" title="JMITKNOWLEDGE">
+                <img src="{% static 'assets/img/logo.png' %}">
+                <p id="head">JMIT KNOWLEDGE</p>
+            </div>
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        <i class="fa fa-home"></i>
+                        <span class="clearfix d-none d-sm-inline-block">Home</span>
+                    </a>
+                </li>
+                {% comment %} <li class="nav-item">
+                    <a href="/compiler/compilersopts" class="nav-link">
+                        <i class="fa fa-cog"></i>
+                        <span class="clearfix d-none d-sm-inline-block">Editor</span>
+                    </a>
+                </li>{% endcomment %}
+                {% comment %} <li class="nav-item"> 
+                    <a href="/leaderboard" class="nav-link">
+                        <i class="fa fa-table"></i>
+                        <span class="clearfix d-none d-sm-inline-block">LeaderBoard</span>
+                    </a>
+                </li> {% endcomment %}
+                {% comment %} <li class="nav-item">
+                    <a href="/theory" class="nav-link">
+                        <i class="fa fa-anchor"></i>
+                        <span class="clearfix d-none d-sm-inline-block">Subjective Ques.</span>
+                    </a>
+                </li> {% endcomment %}
+
+                <li class="nav-item">
+                    <a href="/admin" class="nav-link">
+                        <i class="fa fa-user"></i>
+                        <span class="clearfix d-none d-sm-inline-block">Admin</span>
+                    </a>
+                </li>
+            </ul>
+    </header>
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+      <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="True">&times;</span>
+        </button>
+        {{ message }}
+      </div>
+    </div>
+    {% endfor %}
+    <div class="container" id="dione">
+    {% block content %}
+    <br>
+    <br>
+    <br>
+    {% endblock %}
+	</div>
+    
+
+<footer class="page-footer elegant-color center-on-small-only">
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © 2021 Copyright: <a href="">JMIT Innovations</a>
+            </div>
+        </div>
+</footer>
+
+    <script type="text/javascript" src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/mdb.min.js' %}"></script>
+</body>
+
+</html>

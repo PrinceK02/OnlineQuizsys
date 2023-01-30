@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,td{
+            border:1px solid black;
+            border-collapse: collapse;
+            padding: 15px;
+            font-size:large;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style=" text-align:center;">Result</h1>
+    <br>
+    <table>
+        <tr>
+            <td>Marks Obtained</td>
+            <td>{{lb.points}}/{{totalQ}}</td>
+        </tr>
+        <tr>
+            <td>Questions Attempted</td>
+            <td>{{lb.attempted_qus}}</td>
+        </tr>
+        <tr>
+            <td>Correct Questions</td> 
+            <td>{{lb.correct_qus}}</td>
+        </tr>
+        <tr>
+            <td>Wrong Questions</td>
+            <td>{{lb.wrong_qus}}</td>
+        </tr>
+    </table>
+    <div style="text-align:center;">
+        <h3 style="color: green">"{{lb.message}}"</h3>
+        You secured <b>{{per}}%</b> marks
+        <h3>Teacher suggestion:</h3>
+        {{remarks}} 
+        <br>
+        <br>
+        Regards by: <b>{{teacher}}</h4>    
+    </div>
+</body>
+</html>

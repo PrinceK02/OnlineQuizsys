@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>JMIT-Knowledge</title>
+    {% load static %}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/Homepage.css' %}" rel="stylesheet">
+    <style type="text/css">
+        #dione {
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body class="fixed-sn animated fadeIn">
+  <div class="container" id="dione">
+
+    <main class="container animated fadeIn">
+      <div class="row">
+        <div class="col-lg-2 col-md-2"></div>
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+           <div class="jumbotron">
+              <h1 class="h1-responsive" align="center">{{lb.quiz}}</h1>
+              <h1 class="h1-responsive" align="center">RESULT</h1>
+              <hr>
+                <p align="center"> {{lb.message}} </p>
+                <br>
+                <p align="center">Your Score - {{lb.points}}/{{totalQ}} </p>
+                <p align="center">Attempted Questions - {{lb.attempted_qus}}</p>
+                <p align="center">Correct Questions - {{lb.correct_qus}}</p>
+                <p align="center">Wrong Questions - {{lb.wrong_qus}}</p>
+                <a onClick="window.close()" style="color:dodgerblue;">Close</a>
+           </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+    <script type="text/javascript" src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/mdb.min.js' %}"></script>
+</body>
+
+</html>

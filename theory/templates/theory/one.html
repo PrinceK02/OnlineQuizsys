@@ -1,0 +1,17 @@
+{% extends "index/header.html" %}
+<div align="center">
+{% block content %}
+{% if description %}
+<h2>Detail Page</h2>
+<h5>{{question.title}}</h5>
+{% for c in description %}
+<p>{{c.desc}}</p>
+{% empty %}
+<p>There is no Answer available for this question.</p>
+{% endfor %}
+<h3>Question is Created By {{ question.entered_by }}</h3>
+{% else %}
+<p>There is no body.</p>
+{% endif %}
+</div>
+{% endblock %}

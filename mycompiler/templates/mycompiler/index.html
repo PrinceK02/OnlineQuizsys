@@ -1,0 +1,60 @@
+{% extends "index/header.html" %}
+{% block content %}
+{% load static %}
+
+<div class = "container" >
+	<br>
+	<h1 align="center" style="color:orange;">{{ title }}</h1>
+	<br>
+	<br>
+	<br>
+<form method="POST" align = "center" action="/compiler/execute/">
+    {% csrf_token %}
+    <div id="mydiv" style="color: black;font-family: bold">
+    <h3>Enter Code Here: </h3>
+	<div style = "font-family : bold">
+	{{ form.inputArea }}
+	</div>
+    <br>
+    <h3>Choose Language: </h3>{{ form.language }}
+    <br>
+    <h3>Choose Version: </h3>
+    {{ form.version }}
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="form-actions">
+      <input type="submit" class = "btn btn-danger" value = "Run!">
+    </div>
+
+</form>
+</div>
+<fieldset>
+<legend><h2 style="color: orange;">Output:</h2></legend>
+<br>
+<br>
+<h3 align="center" style="color: brown;"><strong><b>{{ iA }}</b></strong></h3>
+</fieldset>
+<br>
+    <br>
+    <br>
+    <br>
+<br>
+    <br>
+    <br>
+    <br>
+<br>
+    <br>
+    <br>
+    <br>
+<br>
+    <br>
+    <br>
+    <br>
+<br>
+    <br>
+    <br>
+    <br>
+{% endblock %}

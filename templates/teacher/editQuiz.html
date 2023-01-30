@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Quiz</title>
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+</head>
+<body style="color: white;background-color: #212529;">
+    <br>
+  <div class="container" id="dione">
+    
+    <form method="POST" id="AddQuizForm">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <label for="input_title" class="col-sm-2 col-form-label">Quiz Title:</label>
+          <div class="col-sm-10">
+            <input style="color:white" value="{{Quiz.title}}" name="quiz_title" type="text" class="form-control" id="inputTitle">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="input_time" class="col-sm-2 col-form-label">Quiz Time:</label>
+          <div class="col-sm-10">
+            <input style="color:white" value="{{Quiz.time}}" name="quiz_time" type="number" min='0' class="form-control" id="inputTime" placeholder="Enter time in minutes">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <legend class="col-form-label col-sm-2 pt-0">Questions:</legend>
+          <div class="col-sm-10">
+            <table class="table table-dark table-striped" style="border: 1px solid;">
+                <thead>
+                  <tr>
+                    <th scope="col">S.no</th>
+                    <th scope="col">Question Name</th>
+                    <th scope="col">Edit Question</th>
+                    <th scope="col">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for question in quizQ %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{question.title}}</td>
+                        <td><button value="Open" onClick="window.open('{% url 'EditQuestion' Quiz.pk question.pk %}','Edit Question','top=50,left=500,toolbar=no,status=no,menubar=no,location=center,scrollbars=yes,resizable=yes,height=700,width=600')" type="button" class="btn btn-warning btn-sm">edit</button></td>
+                        <td><a href="{% url 'DeleteQuestion' Quiz.pk question.pk %}"><button value="Open" type="button" class="btn btn-danger btn-sm">remove</button></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+          </div>
+        </div>
+        <div class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">Add Questions:</legend>
+            <div class="col-sm-10">
+                <select name="questions" id="lang" multiple>
+                    {% for question in quesset %}
+                    <option value="{{question.pk}}">{{question.title}}</option>
+                    {% endfor %}
+                </select>
+                <button name="Add" value="AddtoList" type="submit" class="btn btn-outline-info btn-sm">Add to List</button>
+                <div class="row mb-3">
+                  <div class="col-sm-10">
+                    <button value="open" onClick="AddQuestionWindow()" type="button" class="btn btn-outline-primary btn-sm">Add New Question</button>
+                    <button name="Delete" value="DeleteQuestions" type="submit" class="btn btn-outline-danger btn-sm">Delete Questions</button>
+                  </div>
+                </div>
+            </div>
+          </div>
+        <button onClick="window.location.reload(true)"type="submit" class="btn btn-primary">Save</button>
+    </form>
+      <script type="text/javascript">  
+        function AddQuestionWindow()  
+        {  
+           window.open("{% url 'AddQuestion' %}","Add Question","top=30,left=400,toolbar=no,status=no,menubar=no,location=right,scrollbars=yes,resizable=yes,height=750,width=800");  
+        }
+     </script>  
+    </div>
+</body>
+</html>

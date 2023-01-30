@@ -1,0 +1,5 @@
+{{lb.message}}
+Marks Obtained {{lb.points}}/{{totalQ}}
+Questions Attempted {{lb.attempted_qus}}
+Correct Questions {{lb.correct_qus}}
+Wrong Questions {{lb.wrong_qus}}

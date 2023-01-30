@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+
+</head>
+<body style="
+color: white;
+background-color: #212529;
+">
+    <br>
+  <div class="container" id="dione">
+
+    <h1>Update Details:</h1><br>
+    <form method="POST" id="EditStudentForm">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <label for="input_name" class="col-sm-2 col-form-label">Name:</label>
+          <div class="col-sm-10">
+            <input style="color:white;" value="{{Student.name}}" name="Sname" type="text" class="form-control" id="inputName">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="input_college" class="col-sm-2 col-form-label">College:</label>
+          <div class="col-sm-10">
+            <input style="color:white;"value="{{Student.college}}" name="Scollege" type="text" class="form-control" id="inputCollege">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="input_branch" class="col-sm-2 col-form-label">Branch:</label>
+          <div class="col-sm-10">
+            <select style="color:white;" name="Sbranch" class="form-control" id="exampleFormControlSelect1">
+                {% for branch in branchlist %}
+                <option style="color:black;" value="{{branch.0}}">{{branch.1}}</option>
+                {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+            <label for="input_year" class="col-sm-2 col-form-label">Year:</label>
+            <div class="col-sm-10">
+              <input style="color:white;" max="4" min="1" value="{{Student.year}}" name="Syear" type="number" class="form-control" id="inputYear">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="input_contact" class="col-sm-2 col-form-label">Contact:</label>
+            <div class="col-sm-10">
+              <input style="color:white;" value="{{Student.contact}}" name="Scontact" type="text" class="form-control" id="inputContact">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-10">
+                <label for="submit_button" class="col-sm-2 col-form-label"></label>
+                <button onClick="window.opener.location.reload()" type="submit" class="btn btn-primary">Save</button>
+            </div>   
+        </div>
+    </form>
+  </div>
+</body>
+</html>

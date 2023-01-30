@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compose Mail</title>
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+</head>
+<body style="color: white;background-color: #212529;">
+    <br>
+  <div class="container" id="dione">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <label for="from" class="col-sm-2 col-form-label">From:</label>
+          <div class="col-sm-10">
+            <input name="fromTitle" value="jmitknowledge@gmail.com" disabled type="text" style ="color:white;" class="form-control" id="fromTitle">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="to" class="col-sm-2 col-form-label">To:</label>
+          <div class="col-sm-10">
+            <input name="toTitle" type="text" disabled value="{{lb.user}}" class="form-control" style ="color:white;" id="toTitle">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="ccTitle" class="col-sm-2 col-form-label">Cc(optional):</label>
+          <div class="col-sm-10">
+            <input name="ccTitle" placeholder="Enter usernames separated by ' , '" type="text" class="form-control" style ="color:white;" id="ccTitle">
+          </div>
+        </div>
+        <div class="row mb-3">
+            <label for="message" class="col-sm-2 col-form-label">Your Remarks:</label>
+            <div class="col-sm-10 form-outline">
+                <textarea name="message" class="form-control" id="message" rows="5"style="height: fit-content;color:white;"></textarea>
+            </div>
+        </div>
+        <div class="row mb-3">
+          <label for="teacher" class="col-sm-2 col-form-label">By: &nbsp{{teacher.name}}</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+    </div>
+</body>
+</html>

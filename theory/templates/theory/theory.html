@@ -1,0 +1,53 @@
+ {% extends "index/header.html" %}
+	{% block content %}
+	{% load static %}
+	<br>
+	<br>
+	<h2 align="center"><b><u>List Of {{ title }}</u></b></h2>
+	<br>
+	<div>
+		{% if questions %}
+	<ul>
+	{% for q in questions %}
+	<li><h3><a href="#" style="color:orange">{{ q.title }}</a><br>
+	</h3>
+	<h4 style="color:white;">{{ q.desc }}</h4>
+</li>
+<br>
+<hr>
+<br>
+	{% endfor %}
+	</ul>
+	{% else %}
+	<p align="center">There is no query avaialable...</p>
+	{% endif %}
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+ 	{% endblock %}

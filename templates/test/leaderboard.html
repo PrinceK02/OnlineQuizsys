@@ -1,0 +1,99 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'assets/img/logo.png' %}">
+    <link href="{% static 'assets/css/Table.css' %}" rel="stylesheet">
+</head>
+
+<body class="fixed-sn animated fadeIn">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark elegant-color">
+            <a href="#" class="navbar-brand" title="MMIL Website"><img src="{% static 'assets/img/logo.png' %}">
+                <p id="head">JMIT KNOWLEDGE</p>
+            </a>
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                 <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        <i class="fa fa-home"></i>
+                        <span class="clearfix d-none d-sm-inline-block">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/leaderboard" class="nav-link">
+                        <i class="fa fa-table"></i>
+                        <span class="clearfix d-none d-sm-inline-block">LeaderBoard</span>
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a href="/admin" class="nav-link">
+                        <i class="fa fa-user"></i>
+                        <span class="clearfix d-none d-sm-inline-block">Admin</span>
+                    </a>
+                </li>
+            </ul>
+    </header>
+    <main class="container">
+            <div class="jumbotron">
+               <div class="card text-center z-depth-2">
+                  <div class="card-body">
+                    <p class="white-text mb-0">LeaderBoard</p>
+                  </div>
+               </div>
+               <table class="table table-hover">
+                 <thead class="mdb-color grey darken-4">
+                   <tr class="text-white">
+                      <th>S.no</th>
+                      <th>Name</th>
+                      <th>Year</th>
+                      <th>Branch</th>
+                      <th>Points</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+
+
+                  {% for obj in object %}
+                    <tr>
+                      <th scope="row">{{forloop.counter}}</th>
+                      <td>{{obj.user.profile_set.all.first.name}}</td>
+                      <td>{{obj.user.profile_set.all.first.year}}</td>
+                      <td>{{obj.user.profile_set.all.first.branch}}</td>
+                      <td>{{obj.points}}</td>
+                    </tr>
+                  {% endfor %}
+
+                  
+                 </tbody>
+               </table>
+           </div>
+    </main>
+    <footer class="page-footer elegant-color center-on-small-only" style='bottom: 0; position: fixed; width: 100%;'>
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © 2021 Copyright:
+                <a href="#">JMIT Innovations</a>
+
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/mdb.min.js' %}"></script>
+</body>
+
+</html>

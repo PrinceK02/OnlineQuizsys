@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Teacher</title>
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+</head>
+<body style="
+color: white;
+background-color: #212529;
+">
+    <br>
+  <div class="container" id="dione">
+
+    <h1>Update Details:</h1><br>
+    <form method="POST" id="EditTeacherForm">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <label for="input_name" class="col-sm-2 col-form-label">Name:</label>
+          <div class="col-sm-10">
+            <input style="color:white;" value="{{Teacher.name}}" name="Tname" type="text" class="form-control" id="inputName">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="input_college" class="col-sm-2 col-form-label">College:</label>
+          <div class="col-sm-10">
+            <input style="color:white;" value="{{Teacher.college}}" name="Tcollege" type="text" class="form-control" id="inputCollege">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="input_branch" class="col-sm-2 col-form-label">Branch:</label>
+          <div class="col-sm-10">
+            <select style="color:white;" name="Tbranch" class="form-control" id="exampleFormControlSelect1">
+                {% for branch in branchlist %}
+                <option style="color:black;" value="{{branch.0}}">{{branch.1}}</option>
+                {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+            <label for="input_year" class="col-sm-2 col-form-label">Year:</label>
+            <div class="col-sm-10">
+              <input style="color:white;" max="4" min="1" value="{{Teacher.year}}" name="Tyear" type="number" class="form-control" id="inputYear">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="input_contact" class="col-sm-2 col-form-label">Contact:</label>
+            <div class="col-sm-10">
+              <input style="color:white;" value="{{Teacher.contact}}" name="Tcontact" type="text" class="form-control" id="inputContact">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-10">
+                <label for="submit_button" class="col-sm-2 col-form-label"></label>
+                <button onClick="window.opener.location.reload()" type="submit" class="btn btn-primary">Save</button>
+            </div>   
+        </div>
+    </form>
+
+    <script type="text/javascript">  
+        function AddQuestionWindow()  
+        {  
+           window.open("{% url 'AddQuestion' %}","Add Question","top=50,left=500,toolbar=no,status=no,menubar=no,location=right,scrollbars=yes,resizable=yes,height=700,width=600");  
+        }
+    </script>  
+  </div>
+</body>
+</html>
